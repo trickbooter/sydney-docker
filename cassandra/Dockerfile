@@ -1,6 +1,4 @@
-# 	Note the tag
 FROM       ubuntu:14.04
-# 	Credit to Al Tobey
 MAINTAINER Al Tobey <atobey@datastax.com>
 
 VOLUME ["/data"]
@@ -12,7 +10,7 @@ RUN /bin/sh /install-ubuntu-packages.sh
 # TEMPORARY: while the mirrors are messed up and I'm doing
 # dev passes, this will expect a tarball in the root of the repo
 # wget http://www.apache.dist/cassandra/2.1.1/apache-cassandra-2.1.2-bin.tar.gz
-COPY apache-cassandra-2.1.2-bin.tar.gz /
+# COPY apache-cassandra-2.1.2-bin.tar.gz /
 
 COPY install-cassandra-tarball.sh /
 RUN /bin/sh /install-cassandra-tarball.sh
@@ -29,7 +27,7 @@ COPY conf /src/conf
 
 # install the entrypoint
 # building it is just: go build
-COPY cassandra-docker /bin/
+COPY cassandra-docker/cassandra-docker /bin/
 
 # create symlinks for common commands (for docker exec)
 RUN ln -s /bin/cassandra-docker /bin/cassandra && \
