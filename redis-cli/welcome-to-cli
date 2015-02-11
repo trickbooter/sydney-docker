@@ -1,0 +1,5 @@
+!#/bin/bash
+
+echo 'Welcome to our Redis-CLI container'
+echo 'to run the Redis CLI...'
+echo 'redis-cli -h <HOST_IP>:<REDIS_PORT>'

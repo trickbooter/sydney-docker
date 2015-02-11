@@ -27,6 +27,26 @@ RUN \
   mkdir -p /etc/redis && \
   cp -f *.conf /etc/redis
 
+# Configure Redis Server
+RUN \
+  cd /tmp/redis-stable && \
+  sed -i 's/^\(bind .*\)$/# \1/' /etc/redis/redis.conf && \
+  sed -i 's/^\(daemonize .*\)$/# \1/' /etc/redis/redis.conf && \
+  sed -i 's/^\(dir .*\)$/# \1\ndir \/data/' /etc/redis/redis.conf && \
+  sed -i 's/^\(logfile .*\)$/# \1/' /etc/redis/redis.conf
 
 # Tidy Up
 RUN rm -rf /tmp/redis-stable*
+
+# Add our entrypoint helper
+ADD ep2 /ep
+RUN chmod +x /ep
+
+# Expose ports.
+EXPOSE      6379
+
+# Define mountable directories.
+VOLUME ["/data"]
+
+# Send us to the entrypoint
+ENTRYPOINT ["/ep"]

@@ -1,0 +1,19 @@
+#!/bin/sh
+# Note: Written this using sh so it works in the busybox container too
+
+# USE the trap if you need to also do manual cleanup after the service is stopped,
+trap "echo Do the housework here; exit" HUP INT QUIT KILL TERM
+
+# start service in background here
+if [ "$1" = "server" ]; then
+  echo Starting Redis Server
+  redis-server /etc/redis/redis.conf
+elif [ "$1" = "cli" ]; then
+  shift
+  echo starting cli with arguments "$@"
+  redis-cli "$@"
+elif [ "$1" = "dbg" ]; then
+  echo "$@"
+else
+  /bin/bash
+fi
