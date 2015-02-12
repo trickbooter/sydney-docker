@@ -1,0 +1,51 @@
+# start the Docker Host
+sudo docker -d
+
+# get ip
+ifconfig enp0s3 | grep 'inet'
+
+### my-first-docker ###
+
+# build my-first-docker and tag it mfd
+# cd to my-first-docker folder
+sudo docker build -t mfd .
+
+# show images (all)
+sudo docker images -a
+
+# run
+sudo docker run -it mfd /bin/bash
+
+# from within container show that we have curl installed
+curl google.com
+
+# from another term show containers
+sudo docker ps
+
+# show logs
+sudo docker logs (container id)
+
+# from container term touch a file within the container
+touch please-be-here-later
+
+# rerun container to show immutable images
+
+
+### redis-with-entrypoint ###
+
+# build redis and tag it redis
+# cd to redis-with-entrypoint folder
+sudo docker build -t redis .
+
+# run server (interactively)
+sudo docker run -it -p 6379:6379 -v /home/paul/dev/redis-data:/data redis server
+
+# run cli (interactively)
+sudo docker run -it redis cli -h IP
+
+# redis push
+RPUSH mylist 10
+RPUSH mylist 11
+
+# redis show
+LRANGE 0 -1
