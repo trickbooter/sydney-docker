@@ -7,7 +7,7 @@ MAINTAINER trickbooter <paul@trickbooter.com>
 ENV TERM linux
 
 # Install base tools
-# RUN apt-get update -y && apt-get install -y curl wget git tar unzip
+RUN apt-get update -y && apt-get install -y curl
 
 # Docker has a default ENTRYPOINT of /bin/sh -c
 # We can set our own default ENTRYPOINT
