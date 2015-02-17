@@ -5,7 +5,7 @@ MAINTAINER  trickbooter <paul@trickbooter.com>
 
 # Install.
 RUN \
-  apt-get update && \
+  apt-get update -y && \
   apt-get install -y build-essential tar wget
 
 # Get Redis.
@@ -33,7 +33,7 @@ RUN \
   sed -i 's/^\(bind .*\)$/# \1/' /etc/redis/redis.conf && \
   sed -i 's/^\(daemonize .*\)$/# \1/' /etc/redis/redis.conf && \
   sed -i 's/^\(dir .*\)$/# \1\ndir \/data/' /etc/redis/redis.conf && \
-  sed -i 's/^\(logfile .*\)$/# \1/' /etc/redis/redis.conf 
+  sed -i 's/^\(logfile .*\)$/# \1/' /etc/redis/redis.conf
 
 # Tidy Up
 RUN rm -rf /tmp/redis-stable*
