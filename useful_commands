@@ -13,11 +13,11 @@ sudo docker build -t mfd .
 # show images (all)
 sudo docker images -a
 
-# run
+# run mfd container and ask for bash
 sudo docker run -it mfd /bin/bash
 
 # from within container show that we have curl installed
-curl google.com
+curl google.com -o /curl-output
 
 # from another term show containers
 sudo docker ps
